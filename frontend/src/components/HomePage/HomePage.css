@@ -1,0 +1,47 @@
+main {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 30px;
+}
+
+.rightHomePage {
+    margin-top: 48px;
+}
+
+.rightHomePage h1 {
+    font-size: 64px;
+    color: #000064;
+}
+
+.rightHomePage p {
+    font-size: 24px;
+    margin: 25px 0;
+    color: #504f4f;
+}
+
+.HomePageBtnDiv {
+    display: flex;
+    gap: 16px;
+}
+
+.HomePageBtnDiv a {
+    padding: 10px 22px;
+    background-color: #111140;
+    color: #fff;
+    border: 0;
+    border-radius: 9px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 800px) {
+    main {
+        flex-direction: column;
+        margin: 0 25px 28px 25px;
+    }
+
+    .leftHomePage img {
+        height: 20rem;
+    }
+}

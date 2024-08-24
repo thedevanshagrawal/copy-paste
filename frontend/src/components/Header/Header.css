@@ -1,0 +1,31 @@
+nav {
+    background-color: #111140;
+    height: 5rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #f9f6f1;
+}
+
+.leftHeaderSection {
+    font-size: 25px;
+}
+
+.rightHeaderSection ul {
+    display: flex;
+    gap: 15px;
+    font-size: 20px;
+}
+
+.rightHeaderSection ul a {
+    text-decoration: none;
+    color: #f9f6f1;
+    font-size: 20px;
+}
+
+@media screen and (max-width: 800px) {
+    nav {
+        flex-direction: column;
+        height: 7rem;
+    }
+}
