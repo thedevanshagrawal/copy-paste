@@ -54,6 +54,7 @@ function Paste() {
               readOnly
               className="Contentform-input"
               value={uniqueText}
+               onChange={(e) => setUniqueText(e.target.value)}
             />
 
             <button type="submit" className="Contentform-button">
