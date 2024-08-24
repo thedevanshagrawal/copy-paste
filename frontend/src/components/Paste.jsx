@@ -10,10 +10,14 @@ function Paste() {
   const sendUserData = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("https://copy-paste-backend.onrender.com/api/v1/users/usercopieddata", {
-        userText,
-      });
-      setUniqueText(response.data.data.uniqueText); // Assuming the response structure is { data: { userText: "..." } }
+      const response = await axios.post(
+        "https://copy-paste-backend.onrender.com/api/v1/users/usercopieddata",
+        {
+          userText,
+          uniqueText,
+        }
+      );
+      setUniqueText(response.data.uniqueText); // Assuming the response structure is { data: { userText: "..." } }
       setError("");
     } catch (err) {
       // setError("Error in retrieving data: " + err.message);
@@ -21,8 +25,8 @@ function Paste() {
     }
   };
 
-  console.log("userText: ", userText)
-  console.log("uniqueText: ", uniqueText)
+  console.log("userText: ", userText);
+  console.log("uniqueText: ", uniqueText);
 
   return (
     <div className="Content-Main-Container">
