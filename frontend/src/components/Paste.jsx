@@ -14,10 +14,9 @@ function Paste() {
         "https://copy-paste-backend.onrender.com/api/v1/users/usercopieddata",
         {
           userText,
-          uniqueText,
         }
       );
-      setUniqueText(response.data.uniqueText); // Assuming the response structure is { data: { userText: "..." } }
+      setUniqueText(response.data.data.uniqueText); // Assuming the response structure is { data: { userText: "..." } }
       setError("");
     } catch (err) {
       // setError("Error in retrieving data: " + err.message);
@@ -54,7 +53,6 @@ function Paste() {
               readOnly
               className="Contentform-input"
               value={uniqueText}
-              onChange={(e) => setUniqueText(e.target.value)}
             />
 
             <button type="submit" className="Contentform-button">
