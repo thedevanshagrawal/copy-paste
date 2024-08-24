@@ -13,7 +13,7 @@ function Copy() {
       const response = await axios.post("https://copy-paste-backend.onrender.com/api/v1/users/getusercopieddata", {
         uniqueText,
       });
-      setUserText(response.data.userText); // Assuming the response structure is { data: { userText: "..." } }
+      setUserText(response.data.data.userText); // Assuming the response structure is { data: { userText: "..." } }
       setError("");
     } catch (err) {
       // setError("Error in retrieving data: " + err.message);
@@ -21,6 +21,9 @@ function Copy() {
       setUserText("");
     }
   };
+
+  console.log("userText: ", userText);
+  console.log("uniqueText: ", uniqueText);
 
   return (
     <div className="Content-Main-Container">
