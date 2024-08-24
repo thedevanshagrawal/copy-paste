@@ -25,6 +25,9 @@ function Paste() {
     }
   };
 
+  console.log("userText: ", userText);
+  console.log("uniqueText: ", uniqueText);
+
   return (
     <div className="Content-Main-Container">
       <div className="Contentcontainer">
@@ -51,6 +54,7 @@ function Paste() {
               readOnly
               className="Contentform-input"
               value={uniqueText}
+              onChange={(e) => setUniqueText(e.target.value)}
             />
 
             <button type="submit" className="Contentform-button">
