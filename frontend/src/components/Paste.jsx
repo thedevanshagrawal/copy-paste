@@ -25,9 +25,6 @@ function Paste() {
     }
   };
 
-  console.log("userText: ", userText);
-  console.log("uniqueText: ", uniqueText);
-
   return (
     <div className="Content-Main-Container">
       <div className="Contentcontainer">
