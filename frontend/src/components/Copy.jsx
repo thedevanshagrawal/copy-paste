@@ -10,7 +10,7 @@ function Copy() {
   const getUserData = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("/users/getusercopieddata", {
+      const response = await axios.post("https://copy-paste-backend.onrender.com/api/v1/users/getusercopieddata", {
         uniqueText,
       });
       setUserText(response.data.data.userText); // Assuming the response structure is { data: { userText: "..." } }
