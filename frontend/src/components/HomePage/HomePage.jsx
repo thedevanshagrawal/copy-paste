@@ -6,10 +6,7 @@ function HomePage() {
   return (
     <main>
       <div className="leftHomePage">
-        <img
-          src="https://img.freepik.com/free-vector/hand-drawn-essay-illustration_23-2150268421.jpg?ga=GA1.1.561287211.1717401751&semt=ais_hybrid"
-          alt=""
-        />
+        <img src="/homepageimg.jpg" alt="" />
       </div>
       <div className="rightHomePage">
         <h1>Copy Paste</h1>
