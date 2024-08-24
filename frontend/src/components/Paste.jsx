@@ -17,7 +17,7 @@ function Paste() {
           uniqueText,
         }
       );
-      setUniqueText(response.uniqueText); // Assuming the response structure is { data: { userText: "..." } }
+      setUniqueText(response.data.data.uniqueText); // Assuming the response structure is { data: { userText: "..." } }
       setError("");
     } catch (err) {
       // setError("Error in retrieving data: " + err.message);
