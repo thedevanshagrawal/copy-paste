@@ -5,6 +5,10 @@ main {
     gap: 30px;
 }
 
+.leftHomePage img {
+    height: 35rem;
+}
+
 .rightHomePage {
     margin-top: 48px;
 }
