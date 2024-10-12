@@ -1,3 +1,4 @@
+/* Reset and Base Styles */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -5,70 +6,159 @@
     font-family: Arial, sans-serif;
 }
 
-.Content-Main-Container {
-    background: #4cabff40;
+body {
+    background: #f0f2f5; /* Light background for better contrast */
+    color: #333; /* Default text color */
 }
 
+/* Main Container */
+.Content-Main-Container {
+    background: rgba(76, 171, 255, 0.25); /* Converted hex to rgba for better readability */
+    min-height: 100vh; /* Ensure it covers the full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px; /* Added padding for spacing on smaller screens */
+}
+
+/* Form Container */
 .Contentcontainer {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 88px 0;
+    width: 100%;
+    max-width: 1200px; /* Increased max-width for larger screens */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 40px; /* Space between multiple form sections */
 }
 
+/* Individual Form Section */
 .Contentform-container {
     background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;
+    max-width: 500px; /* Increased max-width for better form space */
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between form elements */
 }
 
+/* Form Title */
 .Contentform-title {
     text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
+    margin-bottom: 10px;
+    font-size: 26px;
     color: #333;
 }
 
+/* Form Labels */
 .Contentform-label {
-    margin-bottom: 8px;
+    margin-bottom: 6px;
     display: block;
     color: #555;
+    font-weight: bold; /* Enhanced label visibility */
+    font-size: 14px;
 }
 
+/* Form Inputs and Textareas */
 .Contentform-input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 12px;
+    margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 6px;
     font-size: 16px;
-    box-sizing: border-box;
+    transition: border-color 0.3s ease;
 }
 
-.Contentform-getData {
-    padding: 10px;
+.Contentform-input:focus {
+    border-color: #4cabff; /* Highlight border on focus */
+    outline: none;
+}
+
+/* Image Preview Container */
+.ImageDataContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.ImageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.ImageContainer img {
+    width: 100px;
     height: 100px;
-    line-height: normal;
-    vertical-align: top;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ddd;
 }
 
+/* Download Buttons Container */
+.DownloadButtons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
 
+/* Download Button Styles */
+.Download-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
 
+.Download-button:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+}
+
+/* Submit Button */
 .Contentform-button {
-
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     background-color: #007bff;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     color: #fff;
     font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+.Contentform-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.Contentform-button:disabled {
+    background-color: #a0c4ff;
+    cursor: not-allowed;
+}
+
+/* Error Message */
+.Contentform-error {
+    color: #ff4d4f;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* Optional Sections */
 .ContentBtn {
     text-align: center;
     margin-bottom: 20px;
@@ -77,27 +167,51 @@
 .Registerbtn {
     text-decoration: none;
     color: #fff;
+    font-weight: bold;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .Contentcontainer {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.Contentform-button:hover {
-    background-color: #0056b3;
+    .Contentform-container {
+        max-width: 90%;
+    }
+
+    .ImageContainer img {
+        width: 80px;
+        height: 80px;
+    }
 }
 
 @media (max-width: 480px) {
     .Contentform-container {
-        padding: 15px;
+        padding: 20px;
     }
 
     .Contentform-title {
         font-size: 20px;
     }
 
-    .Contentform-input {
-        font-size: 14px;
+    .Contentform-label {
+        font-size: 13px;
     }
 
-    .Contentform-button {
+    .Contentform-input {
         font-size: 14px;
+        padding: 10px;
+    }
+
+    .Contentform-button, .Download-button {
+        font-size: 14px;
+        padding: 8px 14px;
+    }
+
+    .ImageContainer img {
+        width: 70px;
+        height: 70px;
     }
 }

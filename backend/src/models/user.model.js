@@ -1,17 +1,19 @@
 import mongoose from "mongoose";
 
-const userSchema = new mongoose.Schema(
-    {
-        userText: {
-            type: String,
-        },
-        uniqueText: {
-            type: String,
-        }
+const UserSchema = new mongoose.Schema({
+    userText: {
+        type: String,
+        required: true
     },
-    {
-        timestamps: true
+    imageData: {
+        type: [String], // Array of image URLs
+        default: []
+    },
+    uniqueText: {
+        type: String,
+        required: true,
+        unique: true
     }
-)
+}, { timestamps: true });
 
-export const User = mongoose.model("User", userSchema)
+export const User = mongoose.model('User', UserSchema);
