@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 import "./Paste.css";
 
 function Copy() {
   const [userText, setUserText] = useState("");
-  const [imageUrls, setImageUrls] = useState([]); // Updated to handle multiple images
+  const [imageUrls, setImageUrls] = useState([]); // Array of image URLs
   const [uniqueText, setUniqueText] = useState("");
   const [error, setError] = useState("");
+  const [downloading, setDownloading] = useState(false); // To handle download state
 
   // Function to handle downloading text as a .txt file
   const downloadText = () => {
@@ -50,6 +53,47 @@ function Copy() {
     }
   };
 
+  // Function to handle downloading all images as a ZIP
+  const downloadAllImages = async () => {
+    if (imageUrls.length === 0) {
+      alert("No images to download.");
+      return;
+    }
+
+    setDownloading(true); // Start download process
+
+    const zip = new JSZip();
+    const imgFolder = zip.folder("images"); // Create a folder named 'images' in the ZIP
+
+    try {
+      // Array to hold all image fetch promises
+      const fetchPromises = imageUrls.map(async (url, index) => {
+        const response = await fetch(url, { mode: 'cors' });
+        if (!response.ok) {
+          throw new Error(`Failed to fetch image ${index + 1}`);
+        }
+        const blob = await response.blob();
+        const extension = url.substring(url.lastIndexOf('.'));
+        const filename = `uploaded_image_${uniqueText}_${index + 1}${extension}`;
+        imgFolder.file(filename, blob);
+      });
+
+      // Wait for all images to be fetched and added to the ZIP
+      await Promise.all(fetchPromises);
+
+      // Generate the ZIP file
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+
+      // Trigger the download
+      saveAs(zipBlob, `images_${uniqueText}.zip`);
+    } catch (err) {
+      console.error("Error creating ZIP:", err);
+      alert("Failed to download all images. Please try again.");
+    } finally {
+      setDownloading(false); // End download process
+    }
+  };
+
   const getUserData = async (event) => {
     event.preventDefault();
 
@@ -67,7 +111,7 @@ function Copy() {
 
       if (data) {
         setUserText(data.userText || "");
-        setImageUrls(data.imageData || []); // Set array of image URLs
+        setImageUrls(data.imageData || []);
         setError("");
       } else {
         setUserText("");
@@ -142,11 +186,18 @@ function Copy() {
             {error && <p className="Contentform-error">{error}</p>}
           </form>
 
-          {/* Download Text Button */}
+          {/* Download Buttons */}
           {userText && (
             <div className="DownloadButtons">
               <button onClick={downloadText} className="Download-button">
                 Download Text
+              </button>
+              <button
+                onClick={downloadAllImages}
+                className="Download-button"
+                disabled={downloading}
+              >
+                {downloading ? "Preparing Download..." : "Download All Images"}
               </button>
             </div>
           )}
